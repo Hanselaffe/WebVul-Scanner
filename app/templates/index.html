@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Web Vulnerability Scanner</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1>Web Vulnerability Scanner</h1>
+        <form method="post" action="/scan">
+            <input type="text" name="url" placeholder="Enter URL" required>
+            <button type="submit">Scan</button>
+        </form>
+        {% if results %}
+            <h2>Scan Results:</h2>
+            <div class="results">
+                <ul>
+                    <li><strong>SQL Injection:</strong> {{ results.sql_injection }}</li>
+                    <li><strong>XSS:</strong> {{ results.xss }}</li>
+                    <li><strong>Directory Traversal:</strong> {{ results.directory_traversal }}</li>
+                </ul>
+            </div>
+        {% endif %}
+    </div>
+</body>
+</html>
